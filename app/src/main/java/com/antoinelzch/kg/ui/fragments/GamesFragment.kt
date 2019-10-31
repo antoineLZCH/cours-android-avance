@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.antoinelzch.kg.Communicator
 
 import com.antoinelzch.kg.R
 import com.antoinelzch.kg.models.Game
@@ -19,10 +20,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GamesFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = GamesFragment()
-    }
 
     private lateinit var viewModel: GamesViewModel
 
@@ -38,7 +35,7 @@ class GamesFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(GamesViewModel::class.java)
 
 
-        refreshLayout.setOnRefreshListener{
+        refreshLayout.setOnRefreshListener {
             fetchGames()
         }
 
@@ -67,7 +64,14 @@ class GamesFragment : Fragment() {
 
     private fun showGames(games: List<Game>) {
         recyclerViewGames.layoutManager = LinearLayoutManager(activity)
-        recyclerViewGames.adapter = GamesAdapter(games)
+        recyclerViewGames.adapter = GamesAdapter(object: Communicator{
+            override val game: List<Game> = games
+            override fun open(game: Game) {
+                fragmentManager!!.beginTransaction().replace(R.id.container, DetailFragment(game)).addToBackStack(null).commit()
+            }
+
+        })
     }
+
 
 }

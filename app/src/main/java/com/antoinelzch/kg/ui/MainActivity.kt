@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.antoinelzch.kg.network.GamesApi
 import com.antoinelzch.kg.R
 import com.antoinelzch.kg.models.Game
+import com.antoinelzch.kg.ui.fragments.GamesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportFragmentManager.beginTransaction().replace(R.id.container, GamesFragment()).addToBackStack(null).commit()
     }
 
 
