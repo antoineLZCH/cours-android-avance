@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.antoinelzch.kg.Communicator
+import com.antoinelzch.kg.network.Communicator
 
 import com.antoinelzch.kg.R
 import com.antoinelzch.kg.models.Game
@@ -64,7 +64,7 @@ class GamesFragment : Fragment() {
 
     private fun showGames(games: List<Game>) {
         recyclerViewGames.layoutManager = LinearLayoutManager(activity)
-        recyclerViewGames.adapter = GamesAdapter(object: Communicator{
+        recyclerViewGames.adapter = GamesAdapter(object: Communicator {
             override val game: List<Game> = games
             override fun open(game: Game) {
                 fragmentManager!!.beginTransaction().replace(R.id.container, DetailFragment(game)).addToBackStack(null).commit()

@@ -1,4 +1,4 @@
-package com.antoinelzch.kg
+package com.antoinelzch.kg.network
 
 import com.antoinelzch.kg.models.Game
 

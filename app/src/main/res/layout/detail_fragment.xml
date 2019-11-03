@@ -26,6 +26,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:id="@+id/gameButton"
             android:text="Voir plus"/>
 
     </RelativeLayout>
